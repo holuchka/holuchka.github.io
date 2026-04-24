@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holuchka</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Geologica:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0f;--surface:#12121a;--border:#1e1e2e;--accent:#5b6ef5;--accent2:#a78bfa;--text:#e8e8f0;--muted:#5a5a7a;--glow:rgba(91,110,245,0.18)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Geologica',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(91,110,245,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(91,110,245,0.04) 1px,transparent 1px);background-size:40px 40px;animation:gridDrift 20s linear infinite;pointer-events:none;z-index:0}
+  body::after{content:'';position:fixed;top:-40%;left:-20%;width:70vw;height:70vw;background:radial-gradient(circle,rgba(91,110,245,0.07) 0%,transparent 65%);animation:blobFloat 14s ease-in-out infinite alternate;pointer-events:none;z-index:0}
+  @keyframes gridDrift{0%{background-position:0 0}100%{background-position:40px 40px}}
+  @keyframes blobFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(10vw,8vh) scale(1.1)}}
+  .container{position:relative;z-index:1;width:100%;max-width:420px;padding:32px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:10px}
+  .avatar-wrap{margin-bottom:4px;animation:fadeDown 0.6s ease both}
+  .avatar-ring{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:2.5px;animation:spinRing 8s linear infinite}
+  @keyframes spinRing{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+  .avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:var(--accent);letter-spacing:-1px}
+  .name{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.5px;animation:fadeDown 0.7s 0.1s ease both}
+  .name span{color:var(--accent)}
+  .tagline{font-size:13px;color:var(--muted);font-weight:300;letter-spacing:0.5px;animation:fadeDown 0.7s 0.2s ease both;margin-bottom:8px}
+  .divider{width:40px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:2px 0 10px;animation:fadeDown 0.7s 0.25s ease both}
+  .link-item{width:100%;display:flex;align-items:center;gap:14px;padding:14px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:400;letter-spacing:0.2px;transition:border-color .22s,background .22s,transform .18s,box-shadow .22s;position:relative;overflow:hidden}
+  .link-item::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(91,110,245,0.07));opacity:0;transition:opacity .25s}
+  .link-item:hover::before{opacity:1}
+  .link-item:hover{border-color:var(--accent);background:#15152080;transform:translateY(-2px) scale(1.01);box-shadow:0 8px 32px var(--glow)}
+  .link-item:active{transform:translateY(0) scale(0.99)}
+  .link-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
+  .link-item:hover .link-icon{transform:scale(1.12)}
+  .link-label{flex:1;font-family:'Geologica',sans-serif}
+  .link-label strong{display:block;font-weight:400;color:var(--text)}
+  .link-label small{display:block;font-size:11px;color:var(--muted);margin-top:1px}
+  .arrow{color:var(--muted);font-size:13px;transition:color .2s,transform .2s}
+  .link-item:hover .arrow{color:var(--accent);transform:translateX(3px)}
+  .ic-tg{background:rgba(36,161,222,0.15)}.ic-tgc{background:rgba(36,161,222,0.1)}.ic-dc{background:rgba(88,101,242,0.15)}.ic-wa{background:rgba(37,211,102,0.15)}.ic-ig{background:rgba(225,48,108,0.15)}.ic-fb{background:rgba(24,119,242,0.15)}.ic-x{background:rgba(255,255,255,0.07)}.ic-tt{background:rgba(0,242,234,0.1)}.ic-th{background:rgba(255,255,255,0.07)}.ic-bs{background:rgba(0,133,255,0.15)}.ic-rd{background:rgba(255,69,0,0.15)}.ic-pt{background:rgba(230,0,35,0.15)}.ic-yt{background:rgba(255,0,0,0.15)}.ic-vk{background:rgba(76,117,163,0.15)}.ic-ok{background:rgba(247,147,30,0.15)}.ic-em{background:rgba(167,139,250,0.12)}.ic-git{background:rgba(240,81,51,0.15)}.ic-stm{background:rgba(23,126,164,0.15)}.ic-gam{background:rgba(100,220,100,0.12)}.ic-web{background:rgba(91,110,245,0.15)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+  .footer{margin-top:16px;font-size:11px;color:var(--muted);letter-spacing:0.5px;animation:fadeDown 0.7s 0.90s ease both;opacity:0}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="avatar-wrap">
+    <div class="avatar-ring"><div class="avatar-inner">H</div></div>
+  </div>
+  <div class="name">Holuchka<span></span></div>
+  <div class="tagline">Авторська творча майстерня • Вишиванки • Одяг • В’язані іграшки • Маленькі речі з характером • Індивідуальні та готові роботи</div>
+  <div class="divider"></div>
+
+  <a class="link-item" href="https://www.tiktok.com/@holuchka" target="_blank" rel="noopener" style="opacity:0;animation:fadeUp 0.5s 0.30s ease forwards">
+    <div class="link-icon ic-tt" style=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.53V6.76a4.85 4.85 0 0 1-1.01-.07z" fill="#00F2EA"/></svg></div>
+    <div class="link-label"><strong>TikTok</strong><small>@holuchka</small></div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-item" href="https://www.instagram.com/holuchka.store" target="_blank" rel="noopener" style="opacity:0;animation:fadeUp 0.5s 0.38s ease forwards">
+    <div class="link-icon ic-ig" style=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" fill="#E1306C"/></svg></div>
+    <div class="link-label"><strong>Instagram</strong><small>@holuchka.store</small></div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-item" href="https://www.threads.com/@holuchka.store" target="_blank" rel="noopener" style="opacity:0;animation:fadeUp 0.5s 0.46s ease forwards">
+    <div class="link-icon ic-th" style=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.222 1.33-2.912.87-.655 2.042-.987 3.498-1.006.51-.007 1.014.03 1.505.11-.063-.295-.094-.602-.094-.919 0-.972.376-1.714 1.117-2.208.692-.46 1.622-.644 2.703-.533l-.21 2.023c-.487-.052-.938.037-1.248.246-.303.202-.345.481-.345.788 0 .094.005.188.016.28.78.191 1.49.498 2.11.913 1.148.77 1.965 1.874 2.359 3.13.508 1.628.363 4.035-1.795 6.133-1.905 1.847-4.207 2.725-7.346 2.745z" fill="#ffffff"/></svg></div>
+    <div class="link-label"><strong>Threads</strong><small>@holuchka.store</small></div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-item" href="https://t.me/akna21" target="_blank" rel="noopener" style="opacity:0;animation:fadeUp 0.5s 0.54s ease forwards">
+    <div class="link-icon ic-tgc" style=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 6.353c-1.15.44-1.141 1.503-.2 1.786l4.214 1.316 1.63 4.948c.193.573.756.895 1.33.713l2.36-.741 2.522 1.87c.614.456 1.49.16 1.696-.562L22.002 4.02a1.81 1.81 0 0 0-.804-1.587zm-9.29 10.15L10.63 14.67l-.522-2.1 5.8-4.5-4 4.513z" fill="#24A1DE" opacity="0.7"/></svg></div>
+    <div class="link-label"><strong>Telegram Channel</strong><small>@akna21</small></div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="link-item" href="https://t.me/akna9" target="_blank" rel="noopener" style="opacity:0;animation:fadeUp 0.5s 0.62s ease forwards">
+    <div class="link-icon ic-tg" style=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 6.353c-1.15.44-1.141 1.503-.2 1.786l4.214 1.316 1.63 4.948c.193.573.756.895 1.33.713l2.36-.741 2.522 1.87c.614.456 1.49.16 1.696-.562L22.002 4.02a1.81 1.81 0 0 0-.804-1.587zm-9.29 10.15L10.63 14.67l-.522-2.1 5.8-4.5-4 4.513z" fill="#24A1DE"/></svg></div>
+    <div class="link-label"><strong>Telegram</strong><small>@akna9</small></div>
+    <span class="arrow">›</span>
+  </a>
+  <div class="footer">© Holuchka (2026)</div>
+</div>
+</body>
+</html>
