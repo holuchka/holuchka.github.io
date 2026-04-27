@@ -6,11 +6,11 @@
 <title>Holuchka</title>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Geologica:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0a0a0f;--surface:#12121a;--border:#1e1e2e;--accent:#5b6ef5;--accent2:#a78bfa;--text:#e8e8f0;--muted:#5a5a7a;--glow:rgba(91,110,245,0.18)}
+  :root{--bg:#f0fff4;--surface:#ffffff;--border:#c3f5d0;--accent:#4ade80;--accent2:#90ffc6;--text:#0d1a12;--muted:#5a8a65;--glow:rgba(74,222,128,0.18);--grid-color:rgba(74,222,128,0.05);--blob-color:rgba(74,222,128,0.07)}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:'Geologica',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
-  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(91,110,245,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(91,110,245,0.04) 1px,transparent 1px);background-size:40px 40px;animation:gridDrift 20s linear infinite;pointer-events:none;z-index:0}
-  body::after{content:'';position:fixed;top:-40%;left:-20%;width:70vw;height:70vw;background:radial-gradient(circle,rgba(91,110,245,0.07) 0%,transparent 65%);animation:blobFloat 14s ease-in-out infinite alternate;pointer-events:none;z-index:0}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:40px 40px;animation:gridDrift 20s linear infinite;pointer-events:none;z-index:0}
+  body::after{content:'';position:fixed;top:-40%;left:-20%;width:70vw;height:70vw;background:radial-gradient(circle,var(--blob-color) 0%,transparent 65%);animation:blobFloat 14s ease-in-out infinite alternate;pointer-events:none;z-index:0}
   @keyframes gridDrift{0%{background-position:0 0}100%{background-position:40px 40px}}
   @keyframes blobFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(10vw,8vh) scale(1.1)}}
   .container{position:relative;z-index:1;width:100%;max-width:420px;padding:32px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -23,9 +23,9 @@
   .tagline{font-size:13px;color:var(--muted);font-weight:300;letter-spacing:0.5px;animation:fadeDown 0.7s 0.2s ease both;margin-bottom:8px}
   .divider{width:40px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:2px 0 10px;animation:fadeDown 0.7s 0.25s ease both}
   .link-item{width:100%;display:flex;align-items:center;gap:14px;padding:14px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:400;letter-spacing:0.2px;transition:border-color .22s,background .22s,transform .18s,box-shadow .22s;position:relative;overflow:hidden}
-  .link-item::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(91,110,245,0.07));opacity:0;transition:opacity .25s}
+  .link-item::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,var(--glow));opacity:0;transition:opacity .25s}
   .link-item:hover::before{opacity:1}
-  .link-item:hover{border-color:var(--accent);background:#15152080;transform:translateY(-2px) scale(1.01);box-shadow:0 8px 32px var(--glow)}
+  .link-item:hover{border-color:var(--accent);transform:translateY(-2px) scale(1.01);box-shadow:0 8px 32px var(--glow)}
   .link-item:active{transform:translateY(0) scale(0.99)}
   .link-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
   .link-item:hover .link-icon{transform:scale(1.12)}
@@ -34,7 +34,7 @@
   .link-label small{display:block;font-size:11px;color:var(--muted);margin-top:1px}
   .arrow{color:var(--muted);font-size:13px;transition:color .2s,transform .2s}
   .link-item:hover .arrow{color:var(--accent);transform:translateX(3px)}
-  .ic-tg{background:rgba(36,161,222,0.15)}.ic-tgc{background:rgba(36,161,222,0.1)}.ic-dc{background:rgba(88,101,242,0.15)}.ic-wa{background:rgba(37,211,102,0.15)}.ic-ig{background:rgba(225,48,108,0.15)}.ic-fb{background:rgba(24,119,242,0.15)}.ic-x{background:rgba(255,255,255,0.07)}.ic-tt{background:rgba(0,242,234,0.1)}.ic-th{background:rgba(255,255,255,0.07)}.ic-bs{background:rgba(0,133,255,0.15)}.ic-rd{background:rgba(255,69,0,0.15)}.ic-pt{background:rgba(230,0,35,0.15)}.ic-yt{background:rgba(255,0,0,0.15)}.ic-vk{background:rgba(76,117,163,0.15)}.ic-ok{background:rgba(247,147,30,0.15)}.ic-em{background:rgba(167,139,250,0.12)}.ic-git{background:rgba(240,81,51,0.15)}.ic-stm{background:rgba(23,126,164,0.15)}.ic-gam{background:rgba(100,220,100,0.12)}.ic-web{background:rgba(91,110,245,0.15)}
+  .ic-tg{background:rgba(36,161,222,0.15)}.ic-tgc{background:rgba(36,161,222,0.1)}.ic-dc{background:rgba(88,101,242,0.15)}.ic-wa{background:rgba(37,211,102,0.15)}.ic-ig{background:rgba(225,48,108,0.15)}.ic-fb{background:rgba(24,119,242,0.15)}.ic-x{background:rgba(128,128,128,0.22);box-shadow:inset 0 0 0 1px rgba(128,128,128,0.35)}.ic-tt{background:rgba(0,242,234,0.1)}.ic-th{background:rgba(128,128,128,0.22);box-shadow:inset 0 0 0 1px rgba(128,128,128,0.35)}.ic-bs{background:rgba(0,133,255,0.15)}.ic-rd{background:rgba(255,69,0,0.15)}.ic-pt{background:rgba(230,0,35,0.15)}.ic-yt{background:rgba(255,0,0,0.15)}.ic-vk{background:rgba(76,117,163,0.15)}.ic-ok{background:rgba(247,147,30,0.15)}.ic-em{background:rgba(167,139,250,0.12)}.ic-git{background:rgba(240,81,51,0.15)}.ic-stm{background:rgba(23,126,164,0.15)}.ic-gam{background:rgba(100,220,100,0.12)}.ic-web{background:rgba(91,110,245,0.15)}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   @keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
   .footer{margin-top:16px;font-size:11px;color:var(--muted);letter-spacing:0.5px;animation:fadeDown 0.7s 0.90s ease both;opacity:0}
@@ -45,7 +45,7 @@
   <div class="avatar-wrap">
     <div class="avatar-ring"><div class="avatar-inner">H</div></div>
   </div>
-  <div class="name">Holuchka<span></span></div>
+  <div class="name"><span>Holuchka</span></div>
   <div class="tagline">Авторська творча майстерня • Вишиванки • Одяг • В’язані іграшки • Маленькі речі з характером • Індивідуальні та готові роботи</div>
   <div class="divider"></div>
 
